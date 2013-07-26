@@ -42,15 +42,15 @@ udevadm control --property=STARTUP=
 echo "Sleeping for 3 seconds"
 sleep 3
 echo "Done Sleeping"
-#udhcpc eth0&
+udhcpc eth0&
 #ifconfig eth0 192.168.1.252/24
 echo -e '\33[9;0]\33[14;0]' >> /dev/tty
 dropbear -r /dropbear_rsa_host_key -E
-/bin/hostapd
+#/bin/hostapd
 echo "Enabling br0"
-/bin/brctl addbr br0
-/bin/brctl addif br0 eth0
-/bin/brctl addif br0 wlan0
+#/bin/brctl addbr br0
+#/bin/brctl addif br0 eth0
+#/bin/brctl addif br0 wlan0
 echo "Done enable br0"
 busybox login
 exec $init
