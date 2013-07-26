@@ -46,5 +46,6 @@ echo "Done Sleeping"
 #ifconfig eth0 192.168.1.252/24
 echo -e '\33[9;0]\33[14;0]' >> /dev/tty
 dropbear -r /dropbear_rsa_host_key -E
+hostapd
 busybox login
 exec $init
