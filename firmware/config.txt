@@ -1,2 +1,1 @@
-initramfs=initrd.gz
-ramfsaddr=0x00a00000
+initramfs initrd.gz 0x00800000

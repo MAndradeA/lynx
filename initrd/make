@@ -3,3 +3,4 @@ cd source
 find ./ | cpio -H newc -o > ../initrd
 cd ..
 gzip initrd
+cp initrd.gz ../firmware/
