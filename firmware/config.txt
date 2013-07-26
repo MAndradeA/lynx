@@ -1,0 +1,2 @@
+initramfs=initrd.gz
+ramfsaddr=0x00a00000
