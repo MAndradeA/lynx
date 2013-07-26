@@ -1,1 +1,1 @@
-initramfs initrd.gz 0x00800000
+initramfs initrd.gz 0x00a00000
