@@ -1,0 +1,4 @@
+DISTRIB_ID=Debian
+DISTRIB_DESCRIPTION="Debian GNU/Linux installer"
+DISTRIB_RELEASE="6.0 (squeeze) - installer build 20110106+squeeze4+b2"
+X_INSTALLATION_MEDIUM=netboot

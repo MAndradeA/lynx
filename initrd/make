@@ -1,0 +1,5 @@
+rm -rf initrd.gz
+cd source
+find ./ | cpio -H newc -o > ../initrd
+cd ..
+gzip initrd

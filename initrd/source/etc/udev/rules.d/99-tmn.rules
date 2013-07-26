@@ -1,0 +1,1 @@
+ACTION=="add", KERNEL=="ttyUSB2", RUN+="/bin/sh -c 'killall -INT pppd; sleep 2; pppd call provider'" 

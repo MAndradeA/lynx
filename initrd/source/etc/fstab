@@ -1,0 +1,4 @@
+none		/dev/pts	devpts	defaults        0	0
+none		/proc		proc	defaults        0	0
+none		/sys		sysfs	noauto		0	0
+/dev/mmcblk0p2	/mnt		ext2	defaults	0	0

@@ -1,0 +1,5 @@
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="mmcblk0p1", RUN+="/bin/mount /dev/%k /boot"
+SUBSYSTEM=="block", ACTION=="add", KERNEL=="mmcblk0p2", RUN+="/bin/mount /dev/%k /media"
+SUBSYSTEM=="block", ACTION=="remove", KERNEL=="mmcblk0p1", RUN+="/bin/umount -f /boot"
+SUBSYSTEM=="block", ACTION=="remove", KERNEL=="mmcblk0p2", RUN+="/bin/umount -f /media"
+#ACTION=="add" KERNEL=="mmcblk0p2" RUN+="mount /dev/%k /mnt"

@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Hook into net events so that we can record hotpluggable interfaces for
+# netcfg.
+
+TARGET_PRODUCT=${HUAWEI_E169}
+logger "10-usb-tmn exec with ${PRODUCT}"
+case "$ACTION" in
+    add)
+
+        [ ${PRODUCT} == ${TARGET_PRODUCT} ] &&
+        [ -n "${INTERFACE}" ] &&
+        [ "$(expr substr ${INTERFACE} 1 2)" == "8/" ] && {
+            
+            if [ "$(lsusb -d 12d1:1001 -v | grep bNumInterfaces | cut -c 29)" == "1" ]
+            then
+                # invoke usb_modeswitch
+                logger "Switching UMTS modem..."
+                switch_huawei.sh
+            else
+                # configure /dev/ttyUSB0 and bring up the wan interface
+                logger "Connecting via UMTS..."
+                settty.sh
+                ifup wan
+            fi
+        }
+        ;;
+esac

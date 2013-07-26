@@ -1,0 +1,7 @@
+SUBSYSTEM=="block", ATTRS{idVendor}=="19d2", ATTRS{idProduct}=="2000", RUN+="eject /dev/%k"
+#ATTRS{idVendor}=="19d2"
+#ATTRS{idProduct}=="2000"
+#SUBSYSTEM=="usb", KERNEL=="sr*", RUN+="eject /dev/sr%n"
+#SUBSYSTEM=="usb",       RUN+="/etc/hotplug.d/usb/usb.hotplug"
+#ACTION=="add" KERNEL=="mmcblk0p1" RUN+="mount /dev/%k /boot"
+#ACTION=="add" KERNEL=="mmcblk0p2" RUN+="mount /dev/%k /mnt"
