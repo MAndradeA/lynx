@@ -14,13 +14,18 @@ fi
 
 case $ACTION in
     add|register)
-	log "Detected hotpluggable network interface $INTERFACE"
-	mkdir -p /etc/network
-	echo "$INTERFACE" >>/etc/network/devhotplug
-	if ["$INTERFACE" == "eth0"]; then
-                ifconfig eth0 192.168.1.252
+        log "Detected hotpluggable network interface $INTERFACE"
+        mkdir -p /etc/network
+        /bin/brctl addbr br0
+        echo "$INTERFACE" >>/etc/network/devhotplug
+        if ["$INTERFACE" = "br0"]; then
+		/sbin/udhcpc -b -i br0
+        else
+		/bin/ifconfig $INTERFACE up
+                /bin/brctl addif br0 $INTERFACE
         fi
-	;;
+        ;;
 esac
 
 exit 0
+

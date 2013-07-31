@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# start/stop the hostapd server
+#
+# chkconfig: 2345 99 10
+# description: hostap daemon
+# processname: hostapd
+# config: /etc/hostapd.conf
+# pidfile: /var/run/hostapd.pid
+#
+PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
+export PATH
+
+# Source function library.
+. /lib/lsb/init-functions
+
+stop()
+{
+ echo -n "Stopping hostapd daemon: "
+ killproc hostapd
+}
+
+start()
+{
+ echo -n "Starting hostapd daemon: "
+ /bin/hostapd /etc/hostapd/hostapd.conf -P /run/hostapd.pid -B
+}
+
+# See how we were called.
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status hostapd
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: hostapd {start|stop|status|restart}"
+        exit 1
+esac
+
+exit 0
