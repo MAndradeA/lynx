@@ -6,6 +6,7 @@ export PATH
 mount /proc
 mount /sys
 mount -o mode=0755 -t tmpfs none /tmp
+mount -o mode=0755 -t tmpfs none /run
 mknod /dev/tty c 5 1
 #mknod /dev/console c 5 1
 rm -rf /dev/null
@@ -52,5 +53,5 @@ echo "Enabling br0"
 #/bin/brctl addif br0 eth0
 #/bin/brctl addif br0 wlan0
 echo "Done enable br0"
-busybox login
+/bin/busybox run-parts /etc/init.d -a start&
 exec $init
