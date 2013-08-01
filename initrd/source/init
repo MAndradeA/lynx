@@ -43,7 +43,7 @@ udevadm control --property=STARTUP=
 sleep 5
 #udhcpc eth0&
 echo -e '\33[9;0]\33[14;0]' >> /dev/tty
-dropbear -r /dropbear_rsa_host_key -E
+#dropbear -r /dropbear_rsa_host_key -E
 #/bin/hostapd
 #/bin/brctl addbr br0
 #/bin/brctl addif br0 eth0
