@@ -12,20 +12,24 @@ if [ -z "$INTERFACE" ]; then
 	exit 1
 fi
 
+echo "$INTERFACE / $ACTION" >>/etc/network/devhotplug
+
 case $ACTION in
     add|register)
         log "Detected hotpluggable network interface $INTERFACE"
         mkdir -p /etc/network
         /bin/brctl addbr br0
         echo "$INTERFACE" >>/etc/network/devhotplug
-        if ["$INTERFACE" = "br0"]; then
-		/sbin/udhcpc -b -i br0
-        else
-		/bin/ifconfig $INTERFACE up
-                /bin/brctl addif br0 $INTERFACE
-        fi
-        ;;
+	case $INTERFACE in
+		br0)
+			/bin/ifconfig $INTERFACE up
+			/sbin/udhcpc -b -i br0
+			;;
+		*)
+			/bin/ifconfig $INTERFACE up
+	                /bin/brctl addif br0 $INTERFACE
+			;;
+	esac
 esac
-
 exit 0
 

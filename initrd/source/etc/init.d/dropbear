@@ -4,17 +4,17 @@
 #
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/sbin/dropbear
+DAEMON=/bin/dropbear
 NAME=dropbear
 DESC="Dropbear SSH server"
 PIDFILE=/var/run/dropbear.pid
 
+. /lib/lsb/init-functions
+
 DROPBEAR_PORT=22
 DROPBEAR_EXTRA_ARGS=
-NO_START=0
 
 test ! -r /etc/default/dropbear || . /etc/default/dropbear
-test "$NO_START" = "0" || exit 0
 test -x "$DAEMON" || exit 0
 test ! -h /var/service/dropbear || exit 0
 
